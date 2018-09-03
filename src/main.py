@@ -19,7 +19,7 @@ class Domain:
 		self.cell_to_token[cell] = self.i
 		self.i += 1
 
-def run(filename, n_generations=100, dpi=100, interval=20):
+def run(filename, n_generations=100, dpi=100, interval=20, save=False):
 	p = Parser(filename)
 	board = p.create_board()
 	fig = plt.figure(dpi=dpi)
@@ -32,7 +32,8 @@ def run(filename, n_generations=100, dpi=100, interval=20):
 	im_ani = animation.ArtistAnimation(
 		fig, ims, interval=interval, repeat_delay=3000, blit=True
 	)
-	im_ani.save(("celluar.gif"), writer="imagemagick")
+	if save:
+		im_ani.save(("celluar.gif"), writer="imagemagick")
 	plt.show()
 
-run('./1st_board.mc')
+run('../boards/1st_board.mc')
