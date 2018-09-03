@@ -1,6 +1,6 @@
-# METACELL
-
-![It's Alive!](https://github.com/StuartFarmer/metacell/raw/master/celluar.gif)
+<p align="center">
+  <img src="https://github.com/StuartFarmer/metacell/raw/master/celluar.gif"/>
+</p>
 
 ```
 ############################################################
