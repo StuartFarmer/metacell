@@ -5,7 +5,9 @@ class Cell:
 		self.stack = []
 
 	def step(self, cell=None):
-		pass
+		x, y = self.position
+		dx, dy = self.velocity
+		self.position = (x + dx, y + dy)
 
 	def interact(self, cell):
 		pass

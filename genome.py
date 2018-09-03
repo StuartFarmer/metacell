@@ -15,11 +15,6 @@ class Rotator(Cell):
 		}
 		super().__init__(pos, vel)
 
-	def step(self):
-		x, y = self.position
-		dx, dy = self.velocity
-		self.position = (x + dx, y + dy)
-
 	def interact(self, cell):
 		self.stack.append(cell)
 		return self.output()
@@ -39,33 +34,9 @@ class Data(Cell):
 		super().__init__(pos, vel)
 		self.stack.append(value)
 
-	def step(self):
-		x, y = self.position
-		dx, dy = self.velocity
-		self.position = (x + dx, y + dy)
-
-	def interact(self, cell):
-		print("I'm interacting with a cell that looks like: {}".format(cell.token))
-
-class Emitter(Cell):
+class Emitter(Rotator):
 	def __init__(self, pos=(0, 0), vel=(0, 0), direction=Direction.NORTH):
-		self.direction = direction
-		self.velocity_map = {
-			Direction.NORTH : (-1, 0),
-			Direction.SOUTH : (1, 0),
-			Direction.EAST : (0, 1),
-			Direction.WEST : (0, -1),
-		}
-		super().__init__(pos, vel)
-
-	def step(self):
-		x, y = self.position
-		dx, dy = self.velocity
-		self.position = (x + dx, y + dy)
-
-	def interact(self, cell):
-		self.stack.append(cell)
-		return self.output()
+		super().__init__(pos, vel, direction)
 
 	def output(self):
 		c = self.stack.pop()
@@ -74,3 +45,8 @@ class Emitter(Cell):
 		c.step()
 		new_c.step()
 		return [c, new_c]
+
+class Filter(Cell):
+	def __init__(self, pos=(0, 0), vel=(0, 0)):
+		super().__init__(pos, vel)
+
