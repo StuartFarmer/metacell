@@ -53,3 +53,18 @@ V : push cell south
 
 I then started to realize that I could go on and on and make hundreds of permutations of copying, rotating, and modifying cells which would just turn into a complex mess. I probably want to write something that allows people to describe their own command sets so that the ideal group of commands comes out of the community that ends up using it based on needs rather than my ideal dictatorial set.
 
+*So I made it **Meta***.
+
+Everyone knows that meta means better /s
+
+## Goals
+
+The goal of this project is to develop a library that allows you to either design your own funge language, or use one out of the box to solve interesting problems. I want the ability to describe artifical neurons in my Vanilla Metacell language, so I will be releasing something that can accomplish this type of data processing.
+
+For using one out of the box, a UI is probably going to be developed. I am looking at classic Curses and Qt.
+
+For describing new cell behaviors, the status quo is to extend the library with Python. This may change if I get bored.
+
+## Status
+
+I'm developing this on weekends to keep busy and challenge myself in a different way than my day job. It allows me to explore and hack and get the itch out of me so I can manage my business when I get back to work. Right now, I am developing the Vanilla implementation which will be made public when it is ready.
