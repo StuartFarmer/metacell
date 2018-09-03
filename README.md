@@ -6,6 +6,7 @@
 
 Clone the repo and run the following to preview a demo application in Vanilla Metacell
 ```
+cd src/
 python3 main.py
 ```
 
