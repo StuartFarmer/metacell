@@ -17,7 +17,7 @@ python3 main.py
 
 ## Why?
 
-I've been into esoteric programming languages since I was little (which actually coincidentally ended up becoming a programming challenge for some people 1 2 3). A very popular esoteric language is Befunge which uses a 2D board and a cursor that wizzes around reading instructions is comes across and executing commands. Example interpreter here.
+I've been into esoteric programming languages since I was [little](https://esolangs.org/wiki/TapeBagel) (which actually coincidentally ended up becoming a programming challenge for some people [1](https://github.com/zlowram/tapebagel) [2](https://gist.github.com/f0rki/8fb98f404b6a28807eb9edd024eccc5a) [3](https://github.com/jashanbhoora/TapeBagel-Interpreter)). A very popular esoteric language is [Befunge](https://esolangs.org/wiki/Befunge) which uses a 2D board and a cursor that wizzes around reading instructions is comes across and executing commands. [Example interpreter here](https://dorianbrown.github.io/befunge/).
 
 ```
 >              v
@@ -27,19 +27,19 @@ v,,,,,,"World!"<
 >25*,@
 ```
 
-I really liked this idea and wanted to make something similar. However, because recreating Befunge wasn't super interesting, I decided I wanted it to operate more like a pipeline. Because I play a lot of Factorio, I thought it would be pretty funny to make the funge feel like you were laying out machinery and pushing it down conveyor belts, etc.
+I really liked this idea and wanted to make something similar. However, because recreating Befunge wasn't super interesting, I decided I wanted it to operate more like a pipeline. Because I play a lot of [Factorio](https://www.factorio.com/), I thought it would be pretty funny to make the funge feel like you were laying out machinery and pushing it down conveyor belts, etc.
 
 <p align="center">
   <img src="https://github.com/StuartFarmer/metacell/raw/master/media/factorio.png"/>
 </p>
 
-However, as I started coding, I found that it was pretty similar to cellular automata (such as Conway's Game of Life and Langston's Loops) and so I started to think of it in this way. Artificial life is super interesting to me as well, especially systems that can self-modify themselves and begin to solve problems / speciate without human intervention.
+However, as I started coding, I found that it was pretty similar to cellular automata (such as [Conway's Game of Life](https://youtu.be/C2vgICfQawE?t=1m55s) and [Langton's Loops](https://www.youtube.com/watch?v=2iDc4C6vbcc)) and so I started to think of it in this way. Artificial life is super interesting to me as well, especially systems that can self-modify themselves and begin to solve problems / speciate without human intervention. ([Check this out if that interests you](https://www.youtube.com/watch?v=RjweUYtpNq4))
 
 <p align="center">
   <img src="https://github.com/StuartFarmer/metacell/raw/master/media/life.gif"/>
 </p>
 
-Ergo, I started to combine the two ideas and survey a lot of the cellular automata out there using Golly. Similarly, I was writing up an instruction set that was somewhat similar to Befunge, but focused more on moving data around rather than a single cursor. I wrote up a spec of commands that looked something like this:
+Ergo, I started to combine the two ideas and survey a lot of the cellular automata out there using [Golly](http://golly.sourceforge.net/). Similarly, I was writing up an instruction set that was somewhat similar to Befunge, but focused more on moving data around rather than a single cursor. I wrote up a spec of commands that looked something like this:
 
 ```
 > : push cell east
@@ -61,7 +61,7 @@ Everyone knows that meta means better /s
 
 The goal of this project is to develop a library that allows you to either design your own funge language, or use one out of the box to solve interesting problems. I want the ability to describe artifical neurons in my Vanilla Metacell language, so I will be releasing something that can accomplish this type of data processing.
 
-For using one out of the box, a UI is probably going to be developed. I am looking at classic Curses and Qt.
+For using one out of the box, a UI is probably going to be developed. I am looking at classic [Curses](https://en.wikipedia.org/wiki/Curses_(programming_library)) and [Qt](https://www.qt.io/).
 
 For describing new cell behaviors, the status quo is to extend the library with Python. This may change if I get bored.
 
