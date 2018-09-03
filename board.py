@@ -23,7 +23,7 @@ class Domain:
 	def get_token(self, cell):
 		t = self.cell_to_token[cell]
 		s = max(self.mapping)
-		t = t/s
+		t = t/s * -1
 		return t
 
 class Board:
