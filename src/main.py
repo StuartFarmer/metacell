@@ -33,7 +33,7 @@ def run(filename, n_generations=100, dpi=100, interval=20, save=False):
 		fig, ims, interval=interval, repeat_delay=3000, blit=True
 	)
 	if save:
-		im_ani.save(("./media/celluar.gif"), writer="imagemagick")
-	plt.show()
+		im_ani.save(("./celluar.gif"), writer="imagemagick")
+	#plt.show()
 
 run('../boards/1st_board.mc', save=True)
