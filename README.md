@@ -18,7 +18,7 @@ python3 main.py
 
 ## Why?
 
-I've been into esoteric programming languages since I was [little](https://esolangs.org/wiki/TapeBagel) (which actually coincidentally ended up becoming a programming challenge for some people [1](https://github.com/zlowram/tapebagel) [2](https://gist.github.com/f0rki/8fb98f404b6a28807eb9edd024eccc5a) [3](https://github.com/jashanbhoora/TapeBagel-Interpreter)). A very popular esoteric language is [Befunge](https://esolangs.org/wiki/Befunge) which uses a 2D board and a cursor that wizzes around reading instructions is comes across and executing commands. [Example interpreter here](https://dorianbrown.github.io/befunge/).
+I've been into esoteric programming languages since I was [little](https://esolangs.org/wiki/TapeBagel) (which actually coincidentally ended up becoming a programming challenge for some people [1](https://github.com/zlowram/tapebagel) [2](https://gist.github.com/f0rki/8fb98f404b6a28807eb9edd024eccc5a) [3](https://github.com/jashanbhoora/TapeBagel-Interpreter)). A very popular esoteric language is [Befunge](https://esolangs.org/wiki/Befunge) which uses a 2D board and a cursor that wizzes around reading instructions it comes across and executing commands. [Example interpreter here](https://dorianbrown.github.io/befunge/).
 
 ```
 >              v
