@@ -31,7 +31,8 @@ class Parser:
 			'^': Rotator(pos=coor, vel=(0, 0), direction=Direction.NORTH),
 			'V': Rotator(pos=coor, vel=(0, 0), direction=Direction.SOUTH),
 			'~': Emitter(pos=coor, vel=(0, 0), direction=Direction.EAST),
-			'0': Data(pos=coor, vel=(-1, 0), value=0)
+			'0': Data(pos=coor, vel=(-1, 0), value=0),
+			':': Filter(pos=coor, vel=(0, 0))
 		}
 
 		try:

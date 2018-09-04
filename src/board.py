@@ -32,12 +32,23 @@ class Board:
 		self.cells = []
 		self.domain = Domain()
 
+	def coor_out_of_bounds(self, coor):
+		x, y = coor
+		sx, sy = self.size
+		print(x, y)
+		print(sx, sy)
+		if x >= sx or y >= sy or x < 0 or y < 0:
+			return True
+		return False
+
 	def update(self):
 		for c in self.cells:
-			x, y = c.position
-			dx, dy = c.velocity
-			c.position = (x + dx, y + dy)
-			_x, _y = c.position
+			c.step()
+			if c.position[0] >= self.size[0] or \
+			   c.position[1] >= self.size[1] or \
+			   c.position[0] < 0 or \
+			   c.position[1] < 0:
+				self.cells.remove(c)
 
 		already_interacted = []
 		outputted_cells = []
@@ -89,14 +100,6 @@ class Board:
 		return b
 
 	def add_cell(self, cell):
-		# can_add = True
-		# for c in self.cells:
-		# 	if c.position == cell.position:
-		# 		can_add = False
-
-		# if can_add:
-		# 
-
 		x, y = cell.position
 		bx, by = self.size
 		if x < bx and y < by:
