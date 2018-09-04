@@ -19,7 +19,7 @@ class Domain:
 		self.cell_to_token[cell] = self.i
 		self.i += 1
 
-def run(filename, n_generations=100, dpi=100, interval=20, save=False):
+def run(filename, n_generations=250, dpi=100, interval=20, save=False):
 	p = Parser(filename)
 	board = p.create_board()
 	fig = plt.figure(dpi=dpi)

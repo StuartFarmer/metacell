@@ -48,4 +48,9 @@ class Filter(Cell):
 			self.state = True
 		return cell
 
+class Sponge(Cell):
+	def __init__(self, pos=(0, 0), vel=(0, 0)):
+		super().__init__(pos, vel)
 
+	def interact(self, cell):
+		return None
