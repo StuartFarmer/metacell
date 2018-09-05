@@ -34,7 +34,14 @@ class Parser:
 			'{': Emitter(pos=coor, vel=(0, 0), direction=Direction.WEST),
 			'0': Data(pos=coor, vel=(-1, 0), value=0),
 			':': Filter(pos=coor, vel=(0, 0)),
-			'#': Sponge(pos=coor, vel=(0, 0))
+			'#': Sponge(pos=coor, vel=(0, 0)),
+			'%': Swap(pos=coor, vel=(0, 0)),
+			'+': Adder(pos=coor, vel=(0, 0)),
+			'*': Multiplier(pos=coor, vel=(0, 0)),
+			'|': HorizonalMirror(pos=coor, vel=(0, 0)),
+			'_': VerticalMirror(pos=coor, vel=(0, 0)),
+			'\\': CounterClockwiseRotator(pos=coor, vel=(0, 0)),
+			'/': ClockwiseRotator(pos=coor, vel=(0, 0))
 		}
 
 		try:

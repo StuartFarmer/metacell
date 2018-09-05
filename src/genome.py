@@ -54,6 +54,26 @@ class CounterClockwiseRotator(Cell):
 		cell.velocity = (dx, dy)
 		return cell
 
+class HorizonalMirror(Cell):
+	def __init__(self, pos, vel):
+		super().__init__(pos, vel)
+
+	def interact(self, cell):
+		dx, _ = cell.velocity
+		dx *= -1
+		cell.velocity = (dx, dy)
+		return cell
+
+class VericalMirror(Cell):
+	def __init__(self, pos, vel):
+		super().__init__(pos, vel)
+
+	def interact(self, cell):
+		_, dy = cell.velocity
+		dy *= -1
+		cell.velocity = (dx, dy)
+		return cell
+
 class Adder(Cell):
 	def __init__(self, pos, vel):
 		self.storage = None
