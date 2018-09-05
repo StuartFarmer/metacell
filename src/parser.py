@@ -40,8 +40,8 @@ class Parser:
 			'*': Multiplier(pos=coor, vel=(0, 0)),
 			'|': HorizonalMirror(pos=coor, vel=(0, 0)),
 			'_': VerticalMirror(pos=coor, vel=(0, 0)),
-			'\\': CounterClockwiseRotator(pos=coor, vel=(0, 0)),
-			'/': ClockwiseRotator(pos=coor, vel=(0, 0))
+			'\\': ClockwiseRotator(pos=coor, vel=(0, 0)),
+			'/': CounterClockwiseRotator(pos=coor, vel=(0, 0))
 		}
 
 		try:

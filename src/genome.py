@@ -7,7 +7,6 @@ class Cell:
 	def __init__(self, pos=(0, 0), vel=(1, 0)):
 		self.position = pos
 		self.velocity = vel
-		self.stack = []
 
 	def step(self, cell=None):
 		x, y = self.position
@@ -34,6 +33,7 @@ class Rotator(Cell):
 
 class ClockwiseRotator(Cell):
 	def __init__(self, pos, vel):
+		self.directions = [(-1, 0), (0, 1), (1, 0), (0, -1)]
 		super().__init__(pos, vel)
 
 	def interact(self, cell):
@@ -59,18 +59,18 @@ class HorizonalMirror(Cell):
 		super().__init__(pos, vel)
 
 	def interact(self, cell):
-		dx, _ = cell.velocity
-		dx *= -1
+		dx, dy = cell.velocity
+		dy *= -1
 		cell.velocity = (dx, dy)
 		return cell
 
-class VericalMirror(Cell):
+class VerticalMirror(Cell):
 	def __init__(self, pos, vel):
 		super().__init__(pos, vel)
 
 	def interact(self, cell):
-		_, dy = cell.velocity
-		dy *= -1
+		dx, dy = cell.velocity
+		dx *= -1
 		cell.velocity = (dx, dy)
 		return cell
 
@@ -87,10 +87,12 @@ class Adder(Cell):
 			self.storage = cell
 			return None
 
-		v1 = cell.stack.pop()
-		v2 = self.storage.stack.pop()
+		else:
+			v1 = cell.value
+			v2 = self.storage.value
+			self.storage = None
 
-		return Data(v1+v2, pos=self.pos, vel=cell.velocity)
+			return Data(v1+v2, pos=self.position, vel=cell.velocity)
 
 class Multiplier(Cell):
 	def __init__(self, pos, vel):
@@ -105,15 +107,17 @@ class Multiplier(Cell):
 			self.storage = cell
 			return None
 
-		v1 = cell.stack.pop()
-		v2 = self.storage.stack.pop()
+		else:
+			v1 = cell.value
+			v2 = self.storage.value
+			self.storage = None
 
-		return Data(v1*v2, pos=self.pos, vel=cell.velocity)
+			return Data(v1*v2, pos=self.position, vel=cell.velocity)
 
 class Data(Cell):
 	def __init__(self, value, pos=(0, 0), vel=(1, 0)):
 		super().__init__(pos, vel)
-		self.stack.append(value)
+		self.value = value
 
 class Emitter(Rotator):
 	def __init__(self, pos=(0, 0), vel=(0, 0), direction=Direction.NORTH):
