@@ -31,7 +31,64 @@ class Rotator(Cell):
 	def interact(self, cell):
 		cell.velocity = self.velocity_map[self.direction]
 		return cell
-		
+
+class ClockwiseRotator(Cell):
+	def __init__(self, pos, vel):
+		super().__init__(pos, vel)
+
+	def interact(self, cell):
+		dx, dy = cell.velocity
+		dx += 1
+		dy -= 1
+		cell.velocity = (dx, dy)
+		return cell
+
+class CounterClockwiseRotator(Cell):
+	def __init__(self, pos, vel):
+		super().__init__(pos, vel)
+
+	def interact(self, cell):
+		dx, dy = cell.velocity
+		dx -= 1
+		dy += 1
+		cell.velocity = (dx, dy)
+		return cell
+
+class Adder(Cell):
+	def __init__(self, pos, vel):
+		self.storage = None
+		super().__init__(pos, vel)
+
+	def interact(self, cell):
+		if type(cell) != Data:
+			return None
+
+		if self.storage is None:
+			self.storage = cell
+			return None
+
+		v1 = cell.stack.pop()
+		v2 = self.storage.stack.pop()
+
+		return Data(v1+v2, pos=self.pos, vel=cell.velocity)
+
+class Multiplier(Cell):
+	def __init__(self, pos, vel):
+		self.storage = None
+		super().__init__(pos, vel)
+
+	def interact(self, cell):
+		if type(cell) != Data:
+			return None
+
+		if self.storage is None:
+			self.storage = cell
+			return None
+
+		v1 = cell.stack.pop()
+		v2 = self.storage.stack.pop()
+
+		return Data(v1*v2, pos=self.pos, vel=cell.velocity)
 
 class Data(Cell):
 	def __init__(self, value, pos=(0, 0), vel=(1, 0)):
