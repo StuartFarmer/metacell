@@ -1,8 +1,21 @@
-from cell import Cell
 from enum import Enum
 from copy import copy
 
 Direction = Enum('Direction', ['NORTH', 'EAST', 'SOUTH', 'WEST'])
+
+class Cell:
+	def __init__(self, pos=(0, 0), vel=(1, 0)):
+		self.position = pos
+		self.velocity = vel
+		self.stack = []
+
+	def step(self, cell=None):
+		x, y = self.position
+		dx, dy = self.velocity
+		self.position = (x + dx, y + dy)
+
+	def interact(self, cell):
+		raise NotImplementedError
 
 class Rotator(Cell):
 	def __init__(self, pos, vel, direction=Direction.NORTH):
@@ -54,3 +67,13 @@ class Sponge(Cell):
 
 	def interact(self, cell):
 		return None
+
+class Swap(Cell):
+	def __init__(self, pos=(0, 0), vel=(0, 0)):
+		self.storage = None
+		super().__init__(pos, vel)
+
+	def interact(self, cell):
+		to_return = self.storage
+		self.storage = cell
+		return to_return

@@ -1,6 +1,5 @@
 from board import Board
-from cell import Cell
-from genome import Rotator, Direction, Data
+from genome import *
 from parser import Parser
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
