@@ -32,7 +32,7 @@ def run(filename, n_generations=15, dpi=100, interval=20, save=False):
 		fig, ims, interval=interval, repeat_delay=3000, blit=True
 	)
 	if save:
-		im_ani.save(("./neuron.gif"), writer="imagemagick")
+		im_ani.save(("../media/neuron.gif"), writer="imagemagick")
 	plt.show()
 
-run('../boards/neuron.mc', save=False)
+run('../boards/neuron.mc', save=True)
