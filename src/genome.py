@@ -1,5 +1,6 @@
 from enum import Enum
 from copy import copy
+import math
 
 Direction = Enum('Direction', ['NORTH', 'EAST', 'SOUTH', 'WEST'])
 
@@ -150,6 +151,16 @@ class Sponge(Cell):
 		return None
 
 class Swap(Cell):
+	def __init__(self, pos=(0, 0), vel=(0, 0)):
+		self.storage = None
+		super().__init__(pos, vel)
+
+	def interact(self, cell):
+		to_return = self.storage
+		self.storage = cell
+		return to_return
+
+class Sigmoid(Cell):
 	def __init__(self, pos=(0, 0), vel=(0, 0)):
 		self.storage = None
 		super().__init__(pos, vel)

@@ -18,7 +18,7 @@ class Domain:
 		self.cell_to_token[cell] = self.i
 		self.i += 1
 
-def run(filename, n_generations=15, dpi=100, interval=20, save=False):
+def run(filename, n_generations=15, dpi=100, interval=100, save=False):
 	p = Parser(filename)
 	board = p.create_board()
 	fig = plt.figure(dpi=dpi)
@@ -35,4 +35,4 @@ def run(filename, n_generations=15, dpi=100, interval=20, save=False):
 		im_ani.save(("../media/neuron.gif"), writer="imagemagick")
 	plt.show()
 
-run('../boards/neuron.mc', save=True)
+run('../boards/neuron.mc', save=False)
