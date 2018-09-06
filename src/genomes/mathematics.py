@@ -57,6 +57,24 @@ class Sigmoid(InlineFunction):
 		cell.value = 1 / (1 + math.exp(-cell.value))
 		return cell
 
+class Swish(InlineFunction):
+	def __init__(self, pos=(0, 0), vel=(0, 0)):
+		super().__init__(pos, vel)
+
+	def interact(self, cell):
+		super.interact(cell)
+		cell.value *= 1 / (1 + math.exp(-cell.value))
+		return cell
+
+class Relu(InlineFunction):
+	def __init__(self, pos=(0, 0), vel=(0, 0)):
+		super().__init__(pos, vel)
+
+	def interact(self, cell):
+		super.interact(cell)
+		cell.value = max(0, cell.value)
+		return cell
+
 class Tanh(InlineFunction):
 	def __init__(self, pos=(0, 0), vel=(0, 0)):
 		super().__init__(pos, vel)
