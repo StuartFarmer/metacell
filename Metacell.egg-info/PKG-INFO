@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: Metacell
+Version: 0.0.1
+Summary: A meta-programming system for making 2D programming languages.
+Home-page: github.com/StuartFarmer/metacell
+Author: stu
+Author-email: stuart@lamden.io
+License: GPL3
+Description: UNKNOWN
+Platform: UNKNOWN

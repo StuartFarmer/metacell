@@ -37,4 +37,4 @@ def run(filename, n_generations=15, dpi=100, interval=20, save=False):
     plt.show()
 
 
-run('../boards/neuron.mc', save=False)
+run('../boards/neuron.mc', save=True)
