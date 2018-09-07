@@ -1,43 +1,46 @@
-from base import Cell
-from input_output import Data
+from .base import Cell
+from .input_output import Data
 import math
 from functools import partial
 
 
 class InlineFunction(Cell):
-	def __init__(self, pos, vel, modifer):
-		super().__init__(pos, vel)
-		self.modifer = modifer
+    def __init__(self, pos, vel, modifer):
+        super().__init__(pos, vel)
+        self.modifer = modifer
 
-	def interact(self, cell):
-		if type(cell) != Data:
-			return None
+    def interact(self, cell):
+        if type(cell) != Data:
+            return None
 
-		cell.value = self.modifer(cell.value)
-		return cell
+        cell.value = self.modifer(cell.value)
+        return cell
+
 
 class TwoArgumentFunction(Cell):
-	def __init__(self, pos=(0, 0), vel=(0, 0), modifer=None):
-		self.storage = None
-		self.modifer = modifer
-		super().__init__(pos, vel)
+    def __init__(self, pos=(0, 0), vel=(0, 0), modifer=None):
+        self.storage = None
+        self.modifer = modifer
+        super().__init__(pos, vel)
 
-	def interact(self, cell):
-		if type(cell) != Data:
-			print(type(cell))
-			return None
+    def interact(self, cell):
+        if cell.__class__ != Data:
+            print(type(cell))
+            print(Data)
+            return None
 
-		if self.storage is None:
-			self.storage = cell
-			return cell
+        if self.storage is None:
+            self.storage = cell
+            return cell
 
-		else:
-			v1 = cell.value
-			v2 = self.storage.value
-			self.storage = None
-			print('yeet')
-			cell.value = self.modifer(v1, v2)
-		return cell
+        else:
+            v1 = cell.value
+            v2 = self.storage.value
+            self.storage = None
+            print('yeet')
+            cell.value = self.modifer(v1, v2)
+        return cell
+
 
 # Activation functions
 Swish = partial(InlineFunction, modifer=lambda x: x * (1 / (1 + math.exp(-x))))
