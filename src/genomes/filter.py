@@ -1,4 +1,6 @@
-from genome import Cell
+from base import Cell
+from functools import partial
+
 
 class AbstractFilter(Cell):
 	def __init__(self, comparator, pos=(0, 0), vel=(0, 0)):
@@ -10,5 +12,6 @@ class AbstractFilter(Cell):
 			cell.velocity = (-1, 0)
 		else:
 			cell.velocity = (1, 0)
+		return cell
 
-BinaryFilter = AbstractFilter(pos, vel, lambda x: x > 0)
+BinaryFilter = partial(AbstractFilter, comparator=lambda x: x.value > 0)

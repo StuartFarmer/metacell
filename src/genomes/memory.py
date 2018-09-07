@@ -1,4 +1,4 @@
-from .genome import Cell
+from base import Cell
 
 stack = []
 

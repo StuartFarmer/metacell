@@ -1,5 +1,4 @@
 from board import Board
-from genome import *
 from parser import Parser
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
@@ -18,7 +17,7 @@ class Domain:
 		self.cell_to_token[cell] = self.i
 		self.i += 1
 
-def run(filename, n_generations=15, dpi=100, interval=100, save=False):
+def run(filename, n_generations=15, dpi=100, interval=20, save=False):
 	p = Parser(filename)
 	board = p.create_board()
 	fig = plt.figure(dpi=dpi)
@@ -26,7 +25,7 @@ def run(filename, n_generations=15, dpi=100, interval=100, save=False):
 	ims = []
 	for i in range(n_generations):
 		universe = board.get_state()
-		ims.append((plt.imshow(universe, cmap=plt.cm.BuPu_r),))
+		ims.append((plt.imshow(universe, cmap=plt.cm.gist_ncar),))
 		board.update()
 	im_ani = animation.ArtistAnimation(
 		fig, ims, interval=interval, repeat_delay=3000, blit=True

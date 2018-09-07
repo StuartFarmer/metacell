@@ -1,127 +1,55 @@
-from genome import Cell
+from base import Cell
+from input_output import Data
 import math
+from functools import partial
+
 
 class InlineFunction(Cell):
-	def __init__(self, pos, vel):
+	def __init__(self, pos, vel, modifer):
 		super().__init__(pos, vel)
+		self.modifer = modifer
 
 	def interact(self, cell):
 		if type(cell) != Data:
 			return None
 
+		cell.value = self.modifer(cell.value)
+		return cell
+
 class TwoArgumentFunction(Cell):
-	def __init__(self, pos, vel):
+	def __init__(self, pos=(0, 0), vel=(0, 0), modifer=None):
 		self.storage = None
+		self.modifer = modifer
 		super().__init__(pos, vel)
 
 	def interact(self, cell):
 		if type(cell) != Data:
+			print(type(cell))
 			return None
 
 		if self.storage is None:
 			self.storage = cell
-			return None
+			return cell
 
 		else:
 			v1 = cell.value
 			v2 = self.storage.value
 			self.storage = None
-			return v1, v2
-
-class Adder(TwoArgumentFunction):
-	def __init__(self, pos, vel):
-		super().__init__(pos, vel)
-
-	def interact(self, cell):
-		data = super().interact(cell)
-		if data is not None:
-			v1, v2 = data
-			return Data(v1+v2, pos=self.position, vel=cell.velocity)
-
-class Multiplier(TwoArgumentFunction):
-	def __init__(self, pos, vel):
-		super().__init__(pos, vel)
-
-	def interact(self, cell):
-		data = super().interact(cell)
-		if data is not None:
-			v1, v2 = data
-			return Data(v1*v2, pos=self.position, vel=cell.velocity)
-
-class Sigmoid(InlineFunction):
-	def __init__(self, pos=(0, 0), vel=(0, 0)):
-		super().__init__(pos, vel)
-
-	def interact(self, cell):
-		super.interact(cell)
-		cell.value = 1 / (1 + math.exp(-cell.value))
+			print('yeet')
+			cell.value = self.modifer(v1, v2)
 		return cell
 
-class Swish(InlineFunction):
-	def __init__(self, pos=(0, 0), vel=(0, 0)):
-		super().__init__(pos, vel)
+# Activation functions
+Swish = partial(InlineFunction, modifer=lambda x: x * (1 / (1 + math.exp(-x))))
+Relu = partial(InlineFunction, modifer=lambda x: max(0, x))
+Sigmoid = partial(InlineFunction, modifer=lambda x: 1 / (1 + math.exp(-x)))
+Tanh = partial(InlineFunction, modifer=lambda x: math.tanh(x))
 
-	def interact(self, cell):
-		super.interact(cell)
-		cell.value *= 1 / (1 + math.exp(-cell.value))
-		return cell
+# Exponentials
+SquareRoot = partial(InlineFunction, modifer=lambda x: math.sqrt(x))
+CubeRoot = partial(InlineFunction, modifer=lambda x: math.pow(x, -3))
+Square = partial(InlineFunction, modifer=lambda x: math.exp(x))
+Cube = partial(InlineFunction, modifer=lambda x: math.pow(x))
 
-class Relu(InlineFunction):
-	def __init__(self, pos=(0, 0), vel=(0, 0)):
-		super().__init__(pos, vel)
-
-	def interact(self, cell):
-		super.interact(cell)
-		cell.value = max(0, cell.value)
-		return cell
-
-class Tanh(InlineFunction):
-	def __init__(self, pos=(0, 0), vel=(0, 0)):
-		super().__init__(pos, vel)
-
-	def interact(self, cell):
-		super.interact(cell)
-		cell.value = math.tanh(cell.value)
-		return cell
-
-class SquareRoot(InlineFunction):
-	def __init__(self, pos=(0, 0), vel=(0, 0)):
-		super().__init__(pos, vel)
-
-	def interact(self, cell):
-		super.interact(cell)
-		cell.value = math.sqrt(cell.value)
-		return cell
-
-class CubeRoot(InlineFunction):
-	def __init__(self, pos=(0, 0), vel=(0, 0)):
-		super().__init__(pos, vel)
-
-	def interact(self, cell):
-		super.interact(cell)
-		cell.value = math.pow(cell.value, -3)
-		return cell
-
-class nRoot(TwoArgumentFunction):
-	pass
-
-class Square(InlineFunction):
-	def __init__(self, pos=(0, 0), vel=(0, 0)):
-		super().__init__(pos, vel)
-
-	def interact(self, cell):
-		super.interact(cell)
-		cell.value = math.exp(cell.value)
-		return cell
-
-class Cube(InlineFunction):
-	def __init__(self, pos=(0, 0), vel=(0, 0)):
-		super().__init__(pos, vel)
-
-	def interact(self, cell):
-		super.interact(cell)
-		cell.value = math.pow(cell.value, 3)
-		return cell
-
-class Power(TwoArgumentFunction):
-	pass
+Adder = partial(TwoArgumentFunction, modifer=lambda x, y: x + y)
+Multiplier = partial(TwoArgumentFunction, modifer=lambda x, y: x * y)

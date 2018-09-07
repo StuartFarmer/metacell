@@ -1,5 +1,12 @@
+import sys
+sys.path.append('./genomes')
+
 from board import Board
-from genome import *
+from genomes.motion import *
+from genomes.mathematics import *
+from genomes.memory import *
+from genomes.input_output import *
+from genomes.filter import *
 
 class Parser:
 	def __init__(self, filename):
@@ -33,7 +40,7 @@ class Parser:
 			'}': Emitter(pos=coor, vel=(0, 0), direction=Direction.EAST),
 			'{': Emitter(pos=coor, vel=(0, 0), direction=Direction.WEST),
 			'0': Data(pos=coor, vel=(-1, 0), value=0),
-			':': Filter(pos=coor, vel=(0, 0)),
+			':': BinaryFilter(pos=coor, vel=(0, 0)),
 			'#': Sponge(pos=coor, vel=(0, 0)),
 			'%': Swap(pos=coor, vel=(0, 0)),
 			'+': Adder(pos=coor, vel=(0, 0)),
