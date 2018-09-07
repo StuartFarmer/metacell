@@ -1,9 +1,7 @@
-from .board import Board
-from .parser import Parser
+#from .board import Board
+from metacell.processing.parser import Parser
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
-
-from .genomes.filter import *
 
 
 class Domain:

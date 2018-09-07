@@ -1,7 +1,9 @@
-from src.board import Board
-from src.genomes.motion import *
-from src.genomes.memory import *
-
+from metacell.processing.board import Board
+from metacell.genomes.motion import *
+from metacell.genomes.memory import *
+from metacell.genomes.mathematics import *
+from metacell.genomes.filter import *
+from metacell.genomes.input_output import *
 
 class Parser:
     def __init__(self, filename):

@@ -1,5 +1,5 @@
 from . import base
-from motion import clockwise_velocity, Rotator, Direction
+from .motion import clockwise_velocity, Rotator, Direction
 from copy import copy
 
 
