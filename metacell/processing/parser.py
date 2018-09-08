@@ -44,7 +44,12 @@ class Parser:
             '|': HorizonalMirror(pos=coor, vel=(0, 0)),
             '_': VerticalMirror(pos=coor, vel=(0, 0)),
             '\\': ClockwiseRotator(pos=coor, vel=(0, 0)),
-            '/': CounterClockwiseRotator(pos=coor, vel=(0, 0))
+            '/': CounterClockwiseRotator(pos=coor, vel=(0, 0)),
+            't': Tanh(pos=coor, vel=(0, 0)),
+            '$': Swish(pos=coor, vel=(0, 0)),
+            's': Sigmoid(pos=coor, vel=(0, 0)),
+            'r': Relu(pos=coor, vel=(0, 0)),
+            'O': Output(pos=coor, vel=(0, 0))
         }
 
         try:

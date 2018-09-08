@@ -25,8 +25,6 @@ class TwoArgumentFunction(Cell):
 
     def interact(self, cell):
         if cell.__class__ != Data:
-            print(type(cell))
-            print(Data)
             return None
 
         if self.storage is None:
@@ -37,7 +35,6 @@ class TwoArgumentFunction(Cell):
             v1 = cell.value
             v2 = self.storage.value
             self.storage = None
-            print('yeet')
             cell.value = self.modifer(v1, v2)
         return cell
 

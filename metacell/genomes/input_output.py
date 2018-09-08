@@ -26,7 +26,7 @@ class Output(base.Cell):
     def __init__(self, pos=(0, 0), vel=(0, 0)):
         super().__init__(pos, vel)
 
-    def interact(cell):
+    def interact(self, cell):
         if type(cell) == Data:
             print(cell.value)
 
